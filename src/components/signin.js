@@ -1,45 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {signupAction} from '../store/action/action';
-class Signup extends Component {
+import {signinAction} from '../store/action/action';
+class Signin extends Component {
     constructor(props) {
         super(props);
      
         this.state = {
             email: '',
-            userName: '',
             password: ''
         }
 
 
-        this.signup = this.signup.bind(this);
+        this.signin = this.signin.bind(this);
         this._onChangeEmail = this._onChangeEmail.bind(this);
-        this._onChangeUserName = this._onChangeUserName.bind(this);
         this._onChangePassword = this._onChangePassword.bind(this);
 
     }
 
-    signup() {
+    signin() {
         let user = {
             email: this.state.email,
-            username: this.state.userName,
             password: this.state.password
         }
         this.setState({
             email: '',
-            userName: '',
             password: ''
         })
-        this.props.signupwithEmailPassword(user);
+        this.props.signinWithEmailPassword(user);
     }
     _onChangeEmail(event){
         this.setState({
             email:event.target.value
-        })
-    }
-    _onChangeUserName(event){
-        this.setState({
-            userName:event.target.value
         })
     }
     _onChangePassword(event){
@@ -51,13 +42,11 @@ class Signup extends Component {
     render() {
         return (
             <div>
-                <h1>Hello World Signup</h1>
+                <h1>Hello World Signin</h1>
                 <label>Email:<input type='text' name='email' value={this.state.email} onChange={this._onChangeEmail} /></label>
                 <br />
-                <label>User Name:<input type='text' name='username' value={this.state.userName} onChange={this._onChangeUserName}/></label>
-                <br />
                 <label>Password:<input type='password' name='password' value={this.state.password} onChange={this._onChangePassword}/></label>
-                <button onClick={this.signup}>Signup</button>
+                <button onClick={this.signin}>Signin</button>
             </div>
         )
     }
@@ -71,11 +60,11 @@ function mapStateToProp(state) {
 function mapDispatchToProp(dispatch) {
     return ({
         // changeUserName: ()=>{dispatch(changeUserName())}
-        signupwithEmailPassword: (userDetails)=>{
-            dispatch(signupAction(userDetails));
+        signinWithEmailPassword: (user)=>{
+            dispatch(signinAction(user))
         }
     })
 }
 
-export default connect(mapStateToProp, mapDispatchToProp)(Signup);
+export default connect(mapStateToProp, mapDispatchToProp)(Signin);
 

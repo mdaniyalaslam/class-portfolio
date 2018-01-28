@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {changeUserName} from '../store/action/action';
-class Home extends Component {
+class Practice extends Component {
 
-    _changeData(){
-        console.log('event called');
-        this.props.changeUserName();
+    constructor(){
+        super()
+        
     }
+  
 
     render() {
         return (
             <div>
-                <h1>Hello World {this.props.userName}</h1>
-                <button onClick={this._changeData.bind(this)}>Change</button>
-                <Link to='/about'>Go to About</Link>
+                <input type='text' value={} />
+                <h1>Hello World{this.props.userName}</h1>
             </div>
         )
     }
@@ -31,5 +31,5 @@ function mapDispatchToProp(dispatch){
     })
 }
 
-export default connect(mapStateToProp,mapDispatchToProp)(Home);
+export default connect(mapStateToProp,mapDispatchToProp)(Practice);
 
